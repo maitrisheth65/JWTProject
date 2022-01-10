@@ -18,10 +18,8 @@ public class JwtController {
 		@Autowired
 		private JwtService jwtService;
 		public String jwtToken;
-	 	
 	 	//Calls createJwtToken function and Add 'Bearer' to token.
-		
-	 	@PostMapping("/authenticate")
+		@PostMapping("/authenticate")
 	    public String createJwtToken(@ModelAttribute("jwt") JwtRequest jwtRequest) throws Exception {
 	 		JwtResponse jwtResponse= jwtService.createJwtToken(jwtRequest);
 	        jwtToken=jwtResponse.getJwtToken();

@@ -31,9 +31,7 @@ public class JwtService implements UserDetailsService {
     public String userRole;
     @Autowired
     private AuthenticationManager authenticationManager;
-    
     //Authenticate userDetails through database and generate the JWT token.
-    
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
@@ -43,9 +41,7 @@ public class JwtService implements UserDetailsService {
         com.maitri.model.User user=userDao.findById(userName).get();
         return new JwtResponse(user, newGeneratedToken);
     }
-
     //Check weather particular user exists or not.
-    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.maitri.model.User user = userDao.findById(username).get();
@@ -60,9 +56,7 @@ public class JwtService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
-
     //Check Role of logged in user.(Admin or User)
-    
     public Set getAuthority(com.maitri.model.User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRole().forEach(role -> {
@@ -70,10 +64,8 @@ public class JwtService implements UserDetailsService {
         });
         return authorities;
     }
-    
-    //Authenticate the user through database.
-
-    private void authenticate(String userName, String userPassword) throws Exception {
+   //Authenticate the user through database.
+   private void authenticate(String userName, String userPassword) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, userPassword));
         } catch (DisabledException e) {

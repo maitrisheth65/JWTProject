@@ -16,18 +16,15 @@ import com.maitri.model.User;
  */
 @Service
 public class UserService {
-	//Create objects of different classses which are loosely coupled(Autowired).
+		//Create objects of different classses which are loosely coupled(Autowired).
 		@Autowired
 	    private UserDao userDao;
 	    @Autowired
 	    private RoleDao roleDao;
 	    @Autowired
 	    private PasswordEncoder passwordEncoder;
-
 	    //While creating role table,creates two roles(Admin & User).
-	    
 	    public void initRoleAndUser() {
-
 	        Role adminRole = new Role();
 	        adminRole.setRoleName("Admin");
 	        adminRole.setRoleDescription("Admin role");
@@ -50,9 +47,7 @@ public class UserService {
 	        adminUser.setRole(adminRoles);
 	        userDao.save(adminUser);
 	    }
-	    
 	    //Creates New Users
-
 	    public User registerNewUser(User user) {
 	        Role role = roleDao.findById("User").get();
 	        Set<Role> userRoles = new HashSet<>();
@@ -61,27 +56,19 @@ public class UserService {
 	        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
 	        return userDao.save(user);
 	    }
-
 	    //Encode password into BCryptEncode.
-	    
 	    public String getEncodedPassword(String password) {
 	        return passwordEncoder.encode(password);
 	    }
-
 	    //Find all the registered users.
-	    
 	    public List<User> findAll(){
 			   return userDao.findAll();
 		   }
-	    
 	    //Delete User By its id.
-
-		public void deleteByUsername(String userName) {
+	    public void deleteByUsername(String userName) {
 			userDao.deleteById(userName);
 		}
-		
 		//Update user details
-
 		public User updateUser(String id, User user) {
 			  User updatedContact = userDao.findById(id).orElse(null);
 		      updatedContact.setUserFirstName(user.getUserFirstName()); 
@@ -90,9 +77,7 @@ public class UserService {
 			  updatedContact.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
 		      return userDao.save(updatedContact);
 		 }
-		
 		//Find particular User.
-		
 		public Optional<User> findById(String id) {
 		        return userDao.findById(id);
 		    }

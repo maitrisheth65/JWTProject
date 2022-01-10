@@ -15,10 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user")
 public class User {
-	 @Id
+	 	@Id
 	    private String userName;
-	   
-		private String userFirstName;
+	   	private String userFirstName;
 	    private String userLastName;
 	    private String userPassword;
 	    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
@@ -31,7 +30,17 @@ public class User {
 	            }
 	    )
 	    private Set<Role> role;
-
+	    public User(String userName, String userFirstName, String userLastName, String userPassword, Set<Role> role) {
+			super();
+			this.userName = userName;
+			this.userFirstName = userFirstName;
+			this.userLastName = userLastName;
+			this.userPassword = userPassword;
+			this.role = role;
+		}
+	    public User() {
+	    	
+	    }
 	    public String getUserName() {
 	        return userName;
 	    }
@@ -71,16 +80,11 @@ public class User {
 	    public void setRole(Set<Role> role) {
 	        this.role = role;
 	    }
-	    public User(String userName, String userFirstName, String userLastName, String userPassword, Set<Role> role) {
-			super();
-			this.userName = userName;
-			this.userFirstName = userFirstName;
-			this.userLastName = userLastName;
-			this.userPassword = userPassword;
-			this.role = role;
+		@Override
+		public String toString() {
+			return "User [userName=" + userName + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName
+					+ ", userPassword=" + userPassword + ", role=" + role + "]";
 		}
-	    public User() {
-	    	
-	    }
+	    
 	
 }

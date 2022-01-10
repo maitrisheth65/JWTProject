@@ -5,8 +5,17 @@ package com.maitri.model;
 public class JwtRequest {
 	private String userName;
     private String userPassword;
+    public JwtRequest() {
+    	
+    }
+    
+    public JwtRequest(String userName, String userPassword) {
+		super();
+		this.userName = userName;
+		this.userPassword = userPassword;
+	}
 
-    public String getUserName() {
+	public String getUserName() {
         return userName;
     }
 
@@ -21,4 +30,10 @@ public class JwtRequest {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+	@Override
+	public String toString() {
+		return "JwtRequest [userName=" + userName + ", userPassword=" + userPassword + "]";
+	}
+    
 }

@@ -52,7 +52,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		httpSecurity.csrf().disable()
 				// do not authenticate this particular request
-				.authorizeRequests().antMatchers("/login","/authenticate", "/register","/").permitAll().
+				.authorizeRequests().antMatchers("/login","/authenticate", "/register","/","/css/**").permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and()
 				// make sure we use stateless session; session won't be used to

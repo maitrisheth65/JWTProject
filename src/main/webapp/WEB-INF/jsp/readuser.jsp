@@ -1,21 +1,10 @@
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/readuser.css">
 <title>Read Users</title>
-<!--Internal CSS-->
-<style>
-body{
-     background: linear-gradient(135deg, #71b7e6, #9b59b6);
-	color:white
-}
-body a{
-color:white
-}
-
-</style>
 </head>
 <body>
 <h1>Read Users</h1>
